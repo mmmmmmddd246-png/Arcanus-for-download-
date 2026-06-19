@@ -6,7 +6,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.PORT || 3000;
 const MAX_CONCURRENT = parseInt(process.env.MAX_CONCURRENT || '5', 10);
 
 // ── Middleware ──
@@ -43,7 +43,7 @@ setInterval(() => {
   for (const [ip, rec] of requestLog) {
     if (now - rec.start > RATE_WINDOW * 2) requestLog.delete(ip);
   }
-}, 300000);
+}, process.env.PORT || 300000);
 
 // ── Active downloads tracking ──
 let activeDownloads = 0;
@@ -104,7 +104,7 @@ function isValidUrl(str) {
 }
 
 // ── Run yt-dlp ──
-function runYtDlp(args, timeoutMs = 300000) {
+function runYtDlp(args, timeoutMs = process.env.PORT || 300000) {
   return new Promise((resolve, reject) => {
     const proc = spawn('yt-dlp', args, { stdio: ['pipe', 'pipe', 'pipe'] });
     let stdout = '';
