@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcanus — Video Downloader</title>
+  <meta name="description" content="Download videos from any platform — YouTube, Instagram, Facebook, TikTok and more.">
+  <meta name="theme-color" content="#F0F3F8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3.5 sm:px-6">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle theme">
+          <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="logo-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div>
+            <h1 class="text-lg font-extrabold tracking-tight" style="color: var(--text-primary)">Arcanus</h1>
+            <p class="text-[10px] uppercase tracking-[0.2em]" style="color: var(--text-secondary)" data-i18n="app.tagline">Download videos from anywhere</p>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <button id="settings-btn" class="icon-btn" aria-label="Settings">
+          <i class="fas fa-gear"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      <div id="input-area"></div>
+      <div id="preview-area"></div>
+      <div id="platforms-area" class="px-4 py-8 sm:px-6">
+        <div class="mx-auto max-w-2xl">
+          <h3 class="section-label" data-i18n="app.supported_platforms">Supported Platforms</h3>
+          <div id="platforms-grid" class="mt-5 flex flex-wrap items-center justify-center gap-3"></div>
+        </div>
+      </div>
+      <div id="history-area"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer py-6 text-center">
+      <p class="text-xs" style="color: var(--text-tertiary)">
+        <i class="fas fa-bolt mr-1" style="color: var(--primary)"></i>
+        <span data-i18n="app.footer_text">Powered by Arcanus Engine</span>
+      </p>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settings-area"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
