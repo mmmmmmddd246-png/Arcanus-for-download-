@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ArcanusDownload</string>
+    <string name="title_activity_main">ArcanusDownload</string>
+    <string name="package_name">com.arcanus.download</string>
+    <string name="custom_url_scheme">com.arcanus.download</string>
+</resources>
