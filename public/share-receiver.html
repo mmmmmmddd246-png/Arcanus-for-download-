@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcanus — Downloading...</title>
+  <meta name="theme-color" content="#F0F3F8">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #F0F3F8;
+      --primary: #5B85F9;
+      --text-primary: #1A2035;
+      --text-secondary: #8A94A6;
+      --shadow-light: #FFFFFF;
+      --shadow-dark: #D1D9E6;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .loader {
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: -6px -6px 12px var(--shadow-light), 6px 6px 12px var(--shadow-dark);
+      color: var(--primary);
+      font-size: 24px;
+      margin: 0 auto 24px;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(91, 133, 249, 0.15);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    .loader p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin: 0;
+    }
+    .loader .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <div class="logo-wrap">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <div class="logo">Arcanus</div>
+    <div class="spinner"></div>
+    <p>Processing shared link...</p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const sharedUrl = params.get('url') || params.get('text') || params.get('title') || '';
+
+    function extractUrl(text) {
+      const urlRegex = /https?:\/\/[^\s]+/i;
+      const match = text.match(urlRegex);
+      return match ? match[0] : text.trim();
+    }
+
+    const videoUrl = extractUrl(sharedUrl);
+
+    if (videoUrl && /^https?:\/\//i.test(videoUrl)) {
+      window.location.replace('/?url=' + encodeURIComponent(videoUrl));
+    } else if (sharedUrl.trim()) {
+      const candidate = sharedUrl.trim();
+      if (/^[\w.-]+\.\w{2,}/i.test(candidate)) {
+        window.location.replace('/?url=' + encodeURIComponent('https://' + candidate));
+      } else {
+        window.location.replace('/?text=' + encodeURIComponent(sharedUrl.trim()));
+      }
+    } else {
+      window.location.replace('/');
+    }
+  </script>
+</body>
+</html>
