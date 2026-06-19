@@ -1,0 +1,115 @@
+{
+  "name": "Arcanus Video Downloader",
+  "short_name": "Arcanus",
+  "description": "Download videos from YouTube, Instagram, TikTok, Facebook, Twitter and 1000+ sites instantly",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F0F3F8",
+  "theme_color": "#5B85F9",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "arcanus-video-downloader",
+  "categories": ["utilities", "video"],
+  "icons": [
+    {
+      "src": "/icons/icon-72.svg",
+      "sizes": "72x72",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-96.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-128.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-144.svg",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-152.svg",
+      "sizes": "152x152",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384.svg",
+      "sizes": "384x384",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "share_target": {
+    "action": "/share-receiver",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Paste & Download",
+      "short_name": "Quick Download",
+      "description": "Paste a link and start downloading immediately",
+      "url": "/?action=paste",
+      "icons": [
+        {
+          "src": "/icons/icon-96.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "permissions": [
+    "notifications"
+  ],
+  "handle_links": "preferred",
+  "url_handlers": [
+    {
+      "origin": "*"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "related_applications": [],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "display_override": ["window-controls-overlay", "standalone"],
+  "screenshots": [],
+  "iarc_rating_id": "",
+  "features": [
+    "cross-platform",
+    "offline-capable",
+    "share-intent"
+  ]
+}
