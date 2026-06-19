@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Arcanus — Video Downloader</title>
+  <meta name="description" content="Download videos from YouTube, Instagram, TikTok, Facebook, Twitter and 1000+ sites.">
+  <meta name="theme-color" content="#F0F3F8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Arcanus">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg">
+  <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+
+    <!-- Header — Neumorphic Top Bar -->
+    <header class="app-header">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3.5 sm:px-6">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle theme">
+          <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+
+        <!-- Logo (center) -->
+        <div class="flex items-center gap-3">
+          <div class="logo-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div>
+            <h1 class="text-lg font-extrabold tracking-tight" style="color: var(--text-primary)">Arcanus</h1>
+            <p class="text-[10px] uppercase tracking-[0.2em]" style="color: var(--text-secondary)" data-i18n="app.tagline">Download videos from anywhere</p>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <button id="settings-btn" class="icon-btn" data-i18n-aria="app.settings" title="Settings">
+          <i class="fas fa-gear"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1" style="padding-bottom: 80px;">
+      <div id="input-area"></div>
+      <div id="preview-area"></div>
+      <div id="platforms-area" class="px-4 py-8 sm:px-6">
+        <div class="mx-auto max-w-2xl">
+          <h3 class="section-label" data-i18n="app.supported_platforms">Supported Platforms</h3>
+          <div id="platforms-grid" class="mt-5 flex flex-wrap items-center justify-center gap-3"></div>
+        </div>
+      </div>
+      <div id="history-area"></div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Navigation">
+      <button class="bottom-nav-item active" id="nav-home">
+        <i class="fas fa-home"></i>
+        <span data-i18n="app.nav_home">Home</span>
+      </button>
+      <button class="bottom-nav-item" id="nav-downloads">
+        <i class="fas fa-download"></i>
+        <span data-i18n="app.nav_downloads">Downloads</span>
+      </button>
+      <button class="bottom-nav-item" id="nav-settings">
+        <i class="fas fa-gear"></i>
+        <span data-i18n="app.nav_settings">Settings</span>
+      </button>
+    </nav>
+
+    <!-- Settings Modal -->
+    <div id="settings-area"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+          .then(reg => console.log('[SW] Registered:', reg.scope))
+          .catch(err => console.warn('[SW] Failed:', err));
+      });
+    }
+
+    (function generatePngFavicon() {
+      var canvas = document.createElement('canvas');
+      canvas.width = 192; canvas.height = 192;
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0, 192, 192);
+        var link = document.querySelector('link[rel="icon"]') || document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/png';
+        link.href = canvas.toDataURL('image/png');
+        if (!link.parentNode) document.head.appendChild(link);
+      };
+      img.src = '/icons/icon-192.svg';
+    })();
+  </script>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
