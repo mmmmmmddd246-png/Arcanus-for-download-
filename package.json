@@ -1,0 +1,30 @@
+{
+  "name": "arcanus-download",
+  "version": "4.0.0",
+  "description": "Download videos from YouTube, Instagram, TikTok, Facebook, Twitter and 1000+ sites. PWA + APK ready with share sheet and notifications.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "generate-icons": "node scripts/generate-icons.js"
+  },
+  "keywords": [
+    "video-downloader",
+    "youtube",
+    "instagram",
+    "tiktok",
+    "facebook",
+    "yt-dlp",
+    "pwa",
+    "apk"
+  ],
+  "author": "Arcanus",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
